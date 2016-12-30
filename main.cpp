@@ -66,11 +66,6 @@ int main(int argc, char** argv) {
     cout << "\nfirst print\n";
     printTable(first);
     
-    
-    //gets by index for convience
-    //getByIndex(1,first)
-    
-    //can delete row by changing pointers (removes row 1)
     deleteRow(2,first);
     
     cout << "\nsecond print\n";
@@ -89,6 +84,12 @@ int main(int argc, char** argv) {
     
     cout << "\nfourth print\n";
     setTableRow(1,first);
+    printTable(first);
+    
+    cout << "\nfifth print\n";
+    char zeroData[30];
+    strcpy(zeroData, "top of table");
+    insertRow(0,zeroData,first);
     printTable(first);
     
     freeTable(first);
@@ -111,7 +112,7 @@ void setTableRow(int index, struct tableRow *inputtedPointer)
     
 }
 
-//takes index needed and any point in the linked list
+//takes index needed and any point in the linked list if element not in list should return NULL
 struct tableRow* getByIndex(int index, struct tableRow *inputtedPointer)
 {
     struct tableRow *temp = inputtedPointer;
@@ -157,9 +158,6 @@ void deleteRow(int index, struct tableRow *inputtedPointer)
 void insertRow(int index,char Data[30], struct tableRow *inputtedPointer)
 {
     struct tableRow *temp = inputtedPointer;
-    
-    //insert needs to insert into the correct location
-    //currently seems to insert into the last position
     
     while(temp->prevRow != NULL)
     {
@@ -211,7 +209,6 @@ void insertRow(int index,char Data[30], struct tableRow *inputtedPointer)
     
     }
     
-    
 }
 
 void printTable(struct tableRow *inputtedPointer)
@@ -234,7 +231,7 @@ void printTable(struct tableRow *inputtedPointer)
 void freeTable(struct tableRow *inputtedPointer)
 {
     struct tableRow *temp = inputtedPointer;
-    struct tableRow *newTemp = temp;
+    struct tableRow *next = temp;
      
     while(temp->prevRow != NULL)
     {
@@ -244,9 +241,9 @@ void freeTable(struct tableRow *inputtedPointer)
     
     while(temp != NULL)
     {
-        newTemp = temp->nextRow;
+        next = temp->nextRow;
         free(temp);
-        temp = newTemp;
+        temp = next;
     }
 }
 
