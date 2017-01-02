@@ -16,8 +16,6 @@
 #include <iostream>
 
 
-using namespace std;
-
 /*
  * 
  */
@@ -64,6 +62,8 @@ int main(int argc, char** argv)
 
     //sets up initial table
     setTableRow(1, first);
+    
+    using std::cout;
 
     cout << "\nfirst print\n";
     printTable(first);
@@ -217,6 +217,8 @@ void insertRow(int index, char Data[30], struct tableRow *inputtedPointer)
 void printTable(struct tableRow *inputtedPointer)
 {
     struct tableRow *temp = inputtedPointer;
+    
+    using std::cout;
 
     while (temp->prevRow != NULL)
     {
