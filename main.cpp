@@ -95,7 +95,7 @@ int main(int argc, char** argv)
     printTable(first);
 
     freeTable(first);
-    return (0);
+    return (EXIT_SUCCESS);
 }
 
 void setTableRow(int index, struct tableRow *inputtedPointer)
